@@ -6,6 +6,7 @@ console.log('connected!')
 const backdrop = document.getElementById('backdrop')
 let total_agents = 0
 let agents = []
+let distances = []
 
 
 class Agent {
@@ -33,6 +34,14 @@ class Environment {
         // randomly generate environment rectangle
         
     }
+}
+
+
+function distance_between(m,n){
+    let distance_squared = (agents[m].x-agents[n].x)**2 + (agents[m].y-agents[n].y)**2
+    let distance = distance_squared**(1/2)
+    distances.push(distance)
+    return distance
 }
 
 function draw(agents, environment){
