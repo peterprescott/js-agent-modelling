@@ -12,3 +12,6 @@ We need:
 
 ### 15.37.
 [Some one doesn't like d3.js anymore](https://medium.com/@PepsRyuu/why-i-no-longer-use-d3-js-b8288f306c9a).
+
+### 17.09
+https://www.dashingd3js.com/svg-basic-shapes-and-d3js
