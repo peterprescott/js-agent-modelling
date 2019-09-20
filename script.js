@@ -8,7 +8,6 @@ let total_agents = 0
 let agents = []
 let distances = []
 let num_of_agents = 100
-let num_of_iterations = 10
 let step_size = 1
 let neighbourhood = 5
 
@@ -80,11 +79,13 @@ function draw(agents, environment){
 
 
 // generate agents
-function generate(num_of_agents){
+function generate(){
+    agents = []
+    num_of_agents = Number(document.getElementById('agentnumber').value)
     for (i = 0; i < num_of_agents; i++){
-    new Agent(Math.random()*3000, Math.random()*3000);
+    new Agent(Math.random()*300, Math.random()*300);
     }
-
+    draw(agents)
 }
 
 function iterate(){
@@ -95,6 +96,5 @@ function iterate(){
  }
 
 generate(num_of_agents)
-iterate(num_of_iterations)
 
 setInterval(iterate, 1)
