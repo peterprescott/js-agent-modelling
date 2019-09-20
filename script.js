@@ -9,7 +9,8 @@ let agents = []
 let distances = []
 let num_of_agents = 100
 let num_of_iterations = 10
-let step_size = 10
+let step_size = 1
+let neighbourhood = 5
 
 
 class Agent {
@@ -26,9 +27,21 @@ class Agent {
     move(){
         if (Math.random() < 0.5) {this.x = this.x + this.step_size} else {this.x = this.x - this.step_size}
         if (Math.random() < 0.5) {this.y = this.y + this.step_size} else {this.y = this.y - this.step_size}    
+        this.interact()
     }
 
+    die(){
+        
+    }
 
+    interact(){
+        for (let j=0 ; j < agents.length ; j++){ 
+        if (distance_between(this.id, j) < neighbourhood ){
+            if(this.id==j){}
+            else{console.log('do something interactive')}
+        }
+    }
+    }
 
 }
 
@@ -52,7 +65,7 @@ function draw(agents, environment){
     var circle = d3.selectAll('circle').remove()
     
     // draw newly-positioned Agents
-    for (i=0; i < agents.length; i++){
+    for (let i=0; i < agents.length; i++){
         let agent = agents[i];
         backdrop.innerHTML += '<circle cx="' 
                                 + agent.x 
@@ -84,4 +97,4 @@ function iterate(){
 generate(num_of_agents)
 iterate(num_of_iterations)
 
-setInterval(iterate, 100)
+setInterval(iterate, 1)

@@ -3,13 +3,30 @@
   <head>
     <meta charset="UTF-8">
     <title>Javascript Agents</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://d3js.org/d3.v3.min.js" defer></script>
     <script type = 'text/javascript' src='script.js' defer></script>
 
   </head>
   <body>
 
-    <center></center><svg id="backdrop" width=3000 height=3000></svg></center>
+    <center><svg id="backdrop" width=3000 height=3000></svg></center>
+
+<!-- 
+# todos.
+1. buttons
+- restart
+- number of agents
+- step_size
+- speed
+
+
+-->
+
+
+<div class="footer">
+  <p><button onClick=generate(num_of_agents=num_of_agents+10)>Generate More!</button></p>
+</div>
 
   </body>
 </html>
