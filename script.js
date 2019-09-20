@@ -7,6 +7,9 @@ const backdrop = document.getElementById('backdrop')
 let total_agents = 0
 let agents = []
 let distances = []
+let num_of_agents = 100
+let num_of_iterations = 10
+let step_size = 10
 
 
 class Agent {
@@ -16,7 +19,7 @@ class Agent {
     total_agents ++;
     this.x = x;
     this.y = y;
-    this.step_size = 100;
+    this.step_size = step_size;
     agents.push(this)
     }
 
@@ -45,7 +48,10 @@ function distance_between(m,n){
 }
 
 function draw(agents, environment){
-    // draw Agent
+    // erase Agents
+    var circle = d3.selectAll('circle').remove()
+    
+    // draw newly-positioned Agents
     for (i=0; i < agents.length; i++){
         let agent = agents[i];
         backdrop.innerHTML += '<circle cx="' 
@@ -59,7 +65,23 @@ function draw(agents, environment){
     }
 
 
-max = new Agent(100,200)
-minnie = new Agent(5,50)
-mark = new Agent(500, 100)
-draw(agents, 0)
+
+// generate agents
+function generate(num_of_agents){
+    for (i = 0; i < num_of_agents; i++){
+    new Agent(Math.random()*3000, Math.random()*3000);
+    }
+
+}
+
+function iterate(){
+        for (i = 0; i < agents.length; i++){
+            agents[i].move()
+        }
+        draw(agents)
+ }
+
+generate(num_of_agents)
+iterate(num_of_iterations)
+
+setInterval(iterate, 100)
