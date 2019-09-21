@@ -24,14 +24,9 @@ class Agent {
     }
 
     move(){
-        if (Math.random() < 0.5) {this.x = ((this.x + this.step_size) % 150) + 150} else {this.x = ((this.x - this.step_size) % 150) + 150}
-        if (Math.random() < 0.5) {this.y = ((this.y + this.step_size) % 150) + 150} else {this.y = ((this.y - this.step_size) % 150) + 150}    
-        console.log(this.x, this.y)
+        if (Math.random() < 0.5) {this.x = (((this.x + this.step_size) % 500) + 500) % 500} else {this.x = (((this.x - this.step_size) % 500) + 500) % 500}
+        if (Math.random() < 0.5) {this.y = (((this.y + this.step_size) % 500) + 500) % 500} else {this.y = (((this.y - this.step_size) % 500) + 500) % 500}    
         this.interact()
-    }
-
-    die(){
-        
     }
 
     interact(){
@@ -48,8 +43,22 @@ class Agent {
 class Environment {
     constructor(width, height) {
         // randomly generate environment rectangle
-        
+        this.matrix = []
+        this.width = width
+        this.height = height
+
+		for (let x = 0; x < this.width; x++){
+			let row = []
+			for (let y = 0; y < this.height; y++){
+				row.push(Math.round(Math.random()*255))
+			}
+		this.matrix.push(row)
+		}
+
+
     }
+
+
 }
 
 
@@ -60,7 +69,7 @@ function distance_between(m,n){
     return distance
 }
 
-function draw(agents, environment){
+function draw(agents){
     // erase Agents
     var circle = d3.selectAll('circle').remove()
     
@@ -77,6 +86,20 @@ function draw(agents, environment){
         }
     }
 
+env = new Environment(50,50)
+
+function paint(backdrop, env = Environment){
+	for (let x = 0; x < env.width; x++){
+			for (let y = 0; y < env.height; y++){
+					//draw env.matrix[x][y] pixel
+					backdrop.innerHTML += '<rect fill="rgb(0,' + env.matrix[x][y] + ',0)" x="' + x*10 + '" y="' + y*10 + '" width="10" height="10" />'
+			}
+
+		}
+
+
+
+}
 
 
 // generate agents
@@ -84,8 +107,9 @@ function generate(){
     agents = []
     num_of_agents = Number(document.getElementById('agentnumber').value)
     for (i = 0; i < num_of_agents; i++){
-    new Agent(Math.random()*300, Math.random()*300);
+    new Agent(Math.random()*500, Math.random()*500);
     }
+    paint(backdrop)
     draw(agents)
 }
 

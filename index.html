@@ -10,7 +10,13 @@
   </head>
   <body>
 
-    <center><svg id="backdrop" width=500 height=500></svg></center>
+    <center>
+		<svg id="backdrop" width=500 height=500 style="border:1px solid black"></svg>
+		<form>
+			<input id="agentnumber" placeholder="how many agents?" type=text>
+		</form>
+		<button onClick=generate()>Generate</button>
+	</center>
 
 <!-- 
 # todos.
@@ -25,8 +31,7 @@
 
 
 <div class="footer">
-<form><input id="agentnumber" placeholder="how many agents?" type=text></form>
-<button onClick=generate()>Generate</button>
+
 </div>
 
   </body>
