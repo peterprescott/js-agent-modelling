@@ -24,8 +24,9 @@ class Agent {
     }
 
     move(){
-        if (Math.random() < 0.5) {this.x = this.x + this.step_size} else {this.x = this.x - this.step_size}
-        if (Math.random() < 0.5) {this.y = this.y + this.step_size} else {this.y = this.y - this.step_size}    
+        if (Math.random() < 0.5) {this.x = ((this.x + this.step_size) % 150) + 150} else {this.x = ((this.x - this.step_size) % 150) + 150}
+        if (Math.random() < 0.5) {this.y = ((this.y + this.step_size) % 150) + 150} else {this.y = ((this.y - this.step_size) % 150) + 150}    
+        console.log(this.x, this.y)
         this.interact()
     }
 
