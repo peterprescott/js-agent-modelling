@@ -135,13 +135,10 @@ function iterate(){
  }
 
 function more(){
-	console.log('still with you')
-	getNumber = Number(document.getElementById('agentnumber').value)
-	console.log('got the number '+getNumber)
-	generate(getNumber)
-
+	agents.push(new Agent(Math.random()*500, Math.random()*500))
 }
 
+function less(){if(agents.length>1){agents.pop()}}
 
 generate(num_of_agents)
 
